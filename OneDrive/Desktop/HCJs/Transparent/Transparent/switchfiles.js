@@ -1,5 +1,6 @@
 
 let editor = document.querySelector('.editor');
+let PreHTML = document.querySelector('pre.editor');
 const textarea = document.getElementById("codeInput");
 const highlightedDiv = document.getElementById("highlightedCode");
 const livePage = document.querySelector(".livePage iframe");
@@ -28,7 +29,8 @@ let scriptJSpre = document.querySelector('pre.scriptJS');
 
 styleCSStextArea.value = `
 body{
-    background-color: #b7b7bb;
+    background-color: #e6e6e6;;
+
 }
 
 h1{
@@ -59,8 +61,8 @@ textarea.addEventListener("input", () => {
 
 
 AreaCSS.addEventListener('input', (e) => {
-    styleCSSpre.innerHTML = styleCSStextArea.value;
     updateEditor()
+    styleCSSpre.innerHTML = MahtabCsshighlightCSSWithEntities(styleCSStextArea.value);
 });
 
 
@@ -106,12 +108,12 @@ function updateEditor() {
     let textContent = textarea.value;
     const text = textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace('/', '&#47;');
 
-    editor.innerHTML = highlightSyntax(text);
+    PreHTML.innerHTML = highlightSyntax(text);
 
     textContent = textContent.split('</head>');
 
     // livePage.innerHTML = '';
-   let style =  textContent[0].match(/<style>[^]+/)? textContent[0].match(/<style>[^]+/)[0].slice(7 , -7).replace(/<\/?style>/g , '') : '';
+    let style = textContent[0].match(/<style>[^]+/) ? textContent[0].match(/<style>[^]+/)[0].slice(7, -7).replace(/<\/?style>/g, '') : '';
     // livePage.contentDocument.body.innerHTML = textContent[1];
 
 
@@ -149,10 +151,14 @@ function updateEditor() {
 
 
 function highlightSyntax(input) {
-    return input.replace(/(&lt;\/?)(\w+)(.*?)(\/?&gt;)/g, (match, p1, p2, p3, p4) => {
+    input = input.replace(/(&lt;\/?)(\w+)(.*?)(\/?&gt;)/g, (match, p1, p2, p3, p4) => {
         const attributes = p3.replace(/(\w+)=["'](.*?)["']/g, '<span class="attr">$1</span>=<span class="value">"$2"</span>');
         return `${p1}<span class="tag">${p2}</span>${attributes}${p4}`;
     });
+
+
+
+    return input.replaceAll('&#47;&gt;', '<span class="Brace">/&gt;</span>').replaceAll('&lt;/', '&lt;<span class="Brace">/</span>').replaceAll('&lt;', '<span class="Brace">&lt;</span>').replaceAll('&gt;', '<span class="Brace">&gt;</span>');
 }
 
 

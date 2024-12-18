@@ -41,7 +41,7 @@ body {
 
 .editor-container-area {
     display: flex;
-    width: 64%;
+    width: 60%;
     min-width: 620px;
     flex-direction: column;
     /* border: 2px solid red; */
@@ -83,7 +83,7 @@ body {
 pre,
 textarea {
     font-family: monospace;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
     overflow-y: auto;
     flex-grow: 1;
@@ -109,6 +109,8 @@ pre,
     overflow: auto;
     color: rgb(239, 235, 227);
     padding-bottom: 36px;
+    /* background-color: #e6e6e6;; */
+    /* color: #121213; */
 }
 
 .verticlebox {
@@ -147,14 +149,18 @@ textarea {
 
 .tag {
     color: #117cce;
+    color: #258cd6;
 }
 
 .attr {
     color: #3dcbff;
+    color: #5CCFE6;;
 }
 
 .value {
-    color: #ec3a3a;
+    color: #e64747;
+    color: #eb6363;
+
 }
 
 
