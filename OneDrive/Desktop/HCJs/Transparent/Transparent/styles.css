@@ -34,7 +34,7 @@ body {
 
 .ch-Div {
     /* border: 2px solid rgb(255, 2, 15); */
-    flex-grow: 1;
+    flex-grow: 1; 
     display: flex;
 
 }
