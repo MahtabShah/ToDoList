@@ -1,3 +1,6 @@
+styleCSSpre = document.querySelector('pre.styleCSS');
+
+
 function MahtabCsshighlightCSSWithEntities(input) {
     // Escape '<' and '>' for HTML safety
     const escapedInput = input.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -39,11 +42,11 @@ function MahtabCssescapeHTML(str) {
         .replace(/'/g, '&#039;'); // Escape "'"
 }
 
+
 function MahtabCssupdateEditor() {
     const text = OnFileText.value.replace(/{/g, '{').replace(/}/g, '}');
     OnFilePre.innerHTML = MahtabCsshighlightCSSWithEntities(text);
 }
-
 
 
 
@@ -162,10 +165,10 @@ function MahtabCssupdateEditor() {
 // Initialize editor with default content
 styleCSSpre.innerHTML = MahtabCsshighlightCSSWithEntities(`
 body{
-    background-color: #b7b7bb;
+    background-color: #e6e6e6;
 }
-    
-h1{ 
+
+h1{
     color: #3444f5;
     font-family: sans-serif;
 }

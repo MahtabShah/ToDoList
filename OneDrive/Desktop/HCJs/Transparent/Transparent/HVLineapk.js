@@ -1,33 +1,41 @@
-let AllOverLine = document.querySelectorAll('.overline');
-let activeLine = document.querySelector('span');
-activeLine.classList.add('activeLine');
+let Lineactive = document.querySelector('span');
+Lineactive.classList.add('activeLine')
 let add = 0
 
 
-TextArea.addEventListener('input', (e) => {
-    let lastIN = TextArea.selectionStart;
-    let lineNumber = TextArea.value.slice(0, lastIN).split('\n').length;
-    // console.log(lineNumber)
-    // if (e.data === '<') {
-    //     add = -1;
-    // } else if (e.data === '>') {
-    //     add = 0;
-    // }
-    if (activeLine.classList.contains('activeLine')) {
-        activeLine.classList.remove('activeLine');
-        activeLine = AllOverLine[lineNumber + add];
-        activeLine.classList.add('activeLine');
+
+
+function Hrline(TextAr) {
+
+    let lastIN = TextAr.selectionStart;
+    let lineNumber = TextAr.value.slice(0, lastIN).split('\n').length;
+
+    if (Lineactive.classList.contains('activeLine')) {
+
+        Lineactive.classList.remove('activeLine');
+        Lineactive = document.querySelectorAll('.overline')[lineNumber];
+        Lineactive.classList.add('activeLine');
     }
+
+    let hrline = document.createElement('div');
+    hrline.classList.add('overline');
+    document.querySelector('.divvvvv').appendChild(hrline);
+
+    
+
+   
+}
+
+
+
+
+TextArea.addEventListener('input', (e) => {
+    // setTimeout(Hrline, 0.0000);
+    Hrline(TextArea);
 });
 
 TextArea.addEventListener('click', (e) => {
-    let lastIN = TextArea.selectionStart;
-    let lineNumber = TextArea.value.slice(0, lastIN).split('\n').length;
+    // setTimeout(Hrline, 0.000);
+    Hrline(TextArea);
 
-   
-    if (activeLine.classList.contains('activeLine')) {
-        activeLine.classList.remove('activeLine');
-        activeLine = AllOverLine[lineNumber];
-        activeLine.classList.add('activeLine');
-    }
 })

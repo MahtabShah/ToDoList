@@ -29,8 +29,7 @@ let scriptJSpre = document.querySelector('pre.scriptJS');
 
 styleCSStextArea.value = `
 body{
-    background-color: #e6e6e6;;
-
+    background-color: #e6e6e6;
 }
 
 h1{
@@ -48,7 +47,6 @@ scriptJSpre.innerHTML = scriptJStextArea.value;
 styleCSSpre.innerHTML = styleCSStextArea.value;
 
 
-
 OnFileHide.classList.add('OnFileeditorBTN');
 OnFileText.classList.add('OnFileeditor');
 OnFilePre.classList.add('OnFileeditor');
@@ -63,16 +61,28 @@ textarea.addEventListener("input", () => {
 AreaCSS.addEventListener('input', (e) => {
     updateEditor()
     styleCSSpre.innerHTML = MahtabCsshighlightCSSWithEntities(styleCSStextArea.value);
+    Hrline(styleCSStextArea)
 });
 
 
 scriptJStextArea.addEventListener('input', (e) => {
-    scriptJSpre.innerHTML = scriptJStextArea.value;
     updateEditor()
+    scriptJSpre.innerHTML = highlightedJSCode(scriptJStextArea.value);
+    Hrline(scriptJStextArea)
+});
 
+AreaCSS.addEventListener('click', (e) => {
+    updateEditor()
+    styleCSSpre.innerHTML = MahtabCsshighlightCSSWithEntities(styleCSStextArea.value);
+    Hrline(styleCSStextArea)
 });
 
 
+scriptJStextArea.addEventListener('click', (e) => {
+    updateEditor()
+    scriptJSpre.innerHTML = highlightedJSCode(scriptJStextArea.value);
+    Hrline(scriptJStextArea)
+});
 
 FilesClicker.forEach(f => {
     f.addEventListener('click', () => {
@@ -99,7 +109,7 @@ FilesClicker.forEach(f => {
         }
 
     })
-})
+});
 
 
 
@@ -118,8 +128,6 @@ function updateEditor() {
 
 
     const iframe = document.querySelector('.scriptIframe');
-    scriptJSpre.innerHTML = scriptJStextArea.value;
-
 
     const newIframe = iframe.cloneNode();
 
@@ -150,15 +158,45 @@ function updateEditor() {
 }
 
 
-function highlightSyntax(input) {
-    input = input.replace(/(&lt;\/?)(\w+)(.*?)(\/?&gt;)/g, (match, p1, p2, p3, p4) => {
-        const attributes = p3.replace(/(\w+)=["'](.*?)["']/g, '<span class="attr">$1</span>=<span class="value">"$2"</span>');
-        return `${p1}<span class="tag">${p2}</span>${attributes}${p4}`;
-    });
+function highlightSyntax() {
+
+    let Linedivs = textarea.value.split('\n');
+    // console.log(input)
+    let file = document.createElement('div');
+    Linedivs.forEach(line => {
+        let lineDiv = document.createElement('div');
+        lineDiv.classList.add('Hrline')
+        lineDiv.innerText = line || ' ';
+        // lineDiv = HighlightLineDiv(lineDiv);
+        lineDiv.innerHTML = ff(lineDiv.innerHTML);
+        console.log(ff(lineDiv.innerHTML))
+        file.appendChild(lineDiv);
+
+    })
 
 
 
-    return input.replaceAll('&#47;&gt;', '<span class="Brace">/&gt;</span>').replaceAll('&lt;/', '&lt;<span class="Brace">/</span>').replaceAll('&lt;', '<span class="Brace">&lt;</span>').replaceAll('&gt;', '<span class="Brace">&gt;</span>');
+
+
+    // return file.innerHTML;
+    // return OnFilePre.innerHTML;
+
+    function ff(input) {
+
+        input = input.replace(/(&lt;\/?)(\w+)(.*?)(\/?&gt;)/g, (match, p1, p2, p3, p4) => {
+            const attributes = p3.replace(/(\w+)=["'](.*?)["']/g, '<span class="attr">$1</span>=<span class="value">"$2"</span>');
+            return `${p1}<span class="tag">${p2}</span>${attributes}${p4}`;
+        });
+
+
+
+        return input.replaceAll('&#47;&gt;', '<span class="Brace">/&gt;</span>').replaceAll('&lt;/', '&lt;<span class="Brace">/</span>').replaceAll('&lt;', '<span class="Brace">&lt;</span>').replaceAll('&gt;', '<span class="Brace">&gt;</span>');
+
+    }
+
+
+    console.log(file);
+    return file.innerHTML;
 }
 
 
@@ -226,12 +264,6 @@ function HighlightLineDiv(lineDiv) {
 
 
     lineDiv.innerHTML = lineDiv.innerHTML.replaceAll('&gt;', '<span class="Brace">&gt;</span>').replaceAll('&lt;/', '&lt;<span class="Brace">/</span>').replaceAll('&lt;', '<span class="Brace">&lt;</span>')
-    //   lineDiv.innerText.replaceAll('/' , '<span class="lt">/</span>');
-
-    //  lineDiv.innerHTML =  lineDiv.innerHTML.replaceAll('/' , '<span class="lt">/</span>')
-
-    // console.log(lineDiv.innerHTML.replaceAll('&lt;/', '<span></</span>')
-    // )
 
     return lineDiv;
 }

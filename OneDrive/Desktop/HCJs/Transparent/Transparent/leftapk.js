@@ -8,7 +8,7 @@ document.getElementById('shareBtn').addEventListener('click', async () => {
     if (navigator.share) {
         try {
             await navigator.share({
-                title: 'Shared Content',
+                title: 'Shared file',
                 text: textAreaContent,
                 url: window.location.href, // Optional: include current page URL
             });
