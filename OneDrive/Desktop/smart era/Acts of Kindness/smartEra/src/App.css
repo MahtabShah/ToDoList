@@ -1,0 +1,124 @@
+:root {
+  --bs-btn-color: rgb(246, 248, 249);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* color: inherit !important; */
+  /* background-color: inherit !ismportant; */
+}
+
+.ms-header-container {
+  /* border: 2px solid rgb(255, 4, 0); */
+  background-color: rgb(251, 3, 255);
+  background-color: rgb(171, 169, 171);
+  padding: 4px 10px;
+  display: flex;
+  gap: 1rem;
+}
+
+.headerLeft,
+.headerRight {
+  /* border: 2px solid rgb(47, 218, 17); */
+  /* padding: 5px; */
+  display: flex;
+  gap: 1rem;
+  flex-grow: 1;
+  height: clamp(40px, 8vw, 50px);
+}
+
+.headerLeft {
+  max-width: 40rem;
+}
+
+.headerRight {
+  justify-content: end;
+  align-items: center;
+}
+
+.ms-logo {
+  /* border: 1px solid rgb(224, 244, 8); */
+  text-wrap: nowrap;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  transform: scale(1.2);
+  background-clip: text;
+  /* background: linear-gradient(120deg, red, blue); */
+  font-weight: bolder;
+}
+
+.ms-logo > div:nth-child(1) {
+  /* font-size: 2rem; */
+  /* border: 2px solid rebeccapurple; */
+  color: rgb(17, 0, 255);
+  color: rgb(43, 255, 0);
+  z-index: 2;
+  position: relative;
+  font-size: 10px;
+  top: 5px;
+  left: 6px;
+}
+
+.ms-logo > div:nth-child(2) {
+  position: relative;
+  color: rgb(38, 0, 255);
+  color: rgb(43, 255, 0);
+
+  /* border: 2px solid rebeccapurple; */
+  padding: 0 10px;
+  font-size: clamp(4px, 5vw, 18px);
+}
+
+.ms-search-bar {
+  width: clamp(14rem, 90%, 50rem);
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.search-space {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  /* border: 2px solid rebeccapurple; */
+  background-color: rgb(255, 255, 255);
+  /* height: 40px; */
+  height: clamp(3px, 14vw, 35px);
+}
+.search-input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 5px 4px;
+  height: clamp(3px, 14vw, 35px);
+
+  border-radius: 4px;
+}
+
+.search-icon {
+  /* border: 2px solid rebeccapurple; */
+  background-color: aliceblue;
+  padding: 0rem 0.7581rem;
+  border-radius: 0px 4px 4px 0px;
+  display: flex;
+  align-items: center;
+  width: clamp(5px, 20vw, 40px);
+  height: clamp(3px, 14vw, 35px);
+}
+
+.navbar-toggler-icon {
+  width: clamp(5px, 10vw, 30px);
+  height: clamp(3px, 10vw, 32px);
+}
+
+.navbar-toggler {
+  padding: 0;
+  padding-left: clamp(2px, 10%, 10px);
+  padding-right: clamp(2px, 10%, 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
